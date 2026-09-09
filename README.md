@@ -1,4 +1,4 @@
-## how to embaed realname
+## how to embed real name
 
 ```sh
  typst compile card.typ card_real.pdf \
