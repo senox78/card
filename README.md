@@ -7,3 +7,11 @@
        --input 'sub_name=本名'
 ```
 
+## back side
+
+The back side is a blank white page with the same dimensions as the front.
+Both the paper and ink colors are defined in CMYK.
+
+```sh
+typst compile back.typ back.pdf
+```

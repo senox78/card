@@ -1,5 +1,9 @@
+#let paper = cmyk(0%, 0%, 0%, 0%)
+#let ink = cmyk(0%, 0%, 0%, 100%)
+#let accent = cmyk(0%, 35%, 2%, 8%)
+
 #let card = (
-  name: "せの(senox78)",
+  name: [せの(senox#text(fill: accent)[78])],
   sub_name: sys.inputs.at("sub_name", default: ""),
   role: sys.inputs.at("role", default: ""),
 
@@ -22,6 +26,7 @@
 #set page(
   width: 91mm,
   height: 55mm,
+  fill: paper,
   margin: (
     x: 7mm,
     y: 6mm,
@@ -31,6 +36,7 @@
 #set text(
   font: ("Monaspace Radon", "Noto Sans CJK JP"),
   size: 9pt,
+  fill: ink,
 )
 
 #let info-table(items) = table(
@@ -56,7 +62,7 @@
     height: 17.5mm,
     clip: true,
     radius: 1.2mm,
-    stroke: 0.7pt + white,
+    stroke: 0.7pt + paper,
     image(path, width: 100%, height: 100%, fit: fit),
   ),
 )
@@ -88,7 +94,10 @@
           size: 12.5pt,
           weight: "bold",
         )[
-          #card.name
+          #box[
+            #card.name
+            #place(bottom + center, dy: 3.5pt, line(length: 32mm, stroke: 0.8pt + accent))
+          ]
         ]
 
         #if show-role and (card.sub_name != "" or card.role != "") [
@@ -98,7 +107,7 @@
             #v(0.5mm)
           ]
           #if card.role != "" [
-            #text(size: 6pt)[#card.role]
+            #text(size: 5.2pt, fill: cmyk(0%, 0%, 0%, 40%))[#card.role]
           ]
         ]
       ],
