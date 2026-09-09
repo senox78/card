@@ -4,12 +4,11 @@
 
 #let card = (
   name: [せの(senox#text(fill: accent)[78])],
-  sub_name: sys.inputs.at("sub_name", default: ""),
-  role: sys.inputs.at("role", default: ""),
 
   info: (
     ("GitHub", "@senox78"),
     ("󰖟 Web", "senox.cc"),
+    ("Twitter", "@senox78"),
     ("󰛮 Email", "senox78.am2@gmail.com"),
     ("Tags", "JP | Rust | Linux"),
   ),
@@ -17,11 +16,9 @@
   // Replace these paths with the two photos you want to use.
   photos: (
     "./images/ulibooooo.png",
-    "./images/qr-senox.cc.svg",
+    "./images/qr-senox.cc.png",
   ),
 )
-
-#let show-role = sys.inputs.at("show-role", default: "false") == "true"
 
 #set page(
   width: 91mm,
@@ -84,12 +81,8 @@
   column-gutter: 2mm,
 
   [
-    #grid(
-      columns: (1fr,),
-      rows: (auto, auto),
-      row-gutter: 6mm,
-
-      [
+    #block(width: 100%, height: 43mm)[
+      #place(top + left, dy: 5.5mm)[
         #text(
           size: 12.5pt,
           weight: "bold",
@@ -99,23 +92,12 @@
             #place(bottom + center, dy: 3.5pt, line(length: 32mm, stroke: 0.8pt + accent))
           ]
         ]
+      ]
 
-        #if show-role and (card.sub_name != "" or card.role != "") [
-          #v(1mm)
-          #if card.sub_name != "" [
-            #text(size: 8pt, weight: "medium")[#card.sub_name]
-            #v(0.5mm)
-          ]
-          #if card.role != "" [
-            #text(size: 5.2pt, fill: cmyk(0%, 0%, 0%, 40%))[#card.role]
-          ]
-        ]
-      ],
-
-      [
+      #place(bottom + left, dy: -6mm)[
         #text(size: 6.8pt)[#info-table(card.info)]
-      ],
-    )
+      ]
+    ]
   ],
 
   [
